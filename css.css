@@ -59,13 +59,13 @@ li span {
 /* Frog Animation */
 .frog {
   width: 80px;
-  height: 80px;
-  background-image: url('https://i.pinimg.com/736x/e0/6b/1f/e06b1f96dfaab41eb609bb080c68c5c3.jpg'); /* Replace 'frog.png' with your frog image */
-  background-size: contain;
+  height: 60px;
+  background-color: green; /* Frog color */
   position: absolute;
   bottom: 20px; /* Adjust as needed */
   left: 0;
   animation: jump 4s infinite;
+  border-radius: 50% 50% 0 0; /* Rounded corners to create a frog shape */
 }
 
 @keyframes jump {
@@ -74,5 +74,3 @@ li span {
   }
   50% {
     transform: translateX(calc(100% - 80px)); /* Adjust for the width of the frog */
-  }
-}
