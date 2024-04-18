@@ -60,7 +60,7 @@ li span {
 .frog {
   width: 80px;
   height: 80px;
-  background-image: url('frog.png'); /* Replace 'frog.png' with your frog image */
+  background-image: url('https://i.pinimg.com/736x/e0/6b/1f/e06b1f96dfaab41eb609bb080c68c5c3.jpg'); /* Replace 'frog.png' with your frog image */
   background-size: contain;
   position: absolute;
   bottom: 20px; /* Adjust as needed */
