@@ -4,7 +4,7 @@
         hour = minute * 60,
         day = hour * 24;
 
-    const birthday = "July 16, 2024 9:00:00"; // Updated birthday
+    const birthday = "June 16, 2024 9:00:00"; // Updated birthday
 
     const countDown = new Date(birthday).getTime(),
         x = setInterval(function () {
