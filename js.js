@@ -16,7 +16,7 @@
                 document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);
             // do something later when date is reached
             if (distance < 0) {
-                document.getElementById("headline").innerText = "It's Time to Decide!";
+                document.getElementById("headline").innerText = "Be Happy, Life itself an opportunity!";
                 document.getElementById("countdown").style.display = "none";
                 document.getElementById("content").style.display = "block";
                 clearInterval(x);
