@@ -1,21 +1,21 @@
-// Set countdown (10 seconds for demo)
-let timeLeft = 10;
-
-const countdownEl = document.getElementById('countdown');
-
 function updateCountdown() {
-  let minutes = Math.floor(timeLeft / 60);
-  let seconds = timeLeft % 60;
+  const targetDate = new Date("March 22, 2027 00:00:00").getTime();
+  const now = new Date().getTime();
+  const difference = targetDate - now;
 
-  countdownEl.textContent = 
-    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-  if (timeLeft > 0) {
-    timeLeft--;
-    setTimeout(updateCountdown, 1000);
-  } else {
-    countdownEl.textContent = "⏰ Time's up!";
+  if (difference < 0) {
+    document.getElementById("countdown").innerHTML = "We're back!";
+    return;
   }
+
+  const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+  document.getElementById("countdown").innerHTML = `
+    ${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds left
+  `;
 }
 
-updateCountdown();
+setInterval(updateCountdown, 1000);
