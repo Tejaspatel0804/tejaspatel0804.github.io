@@ -1,127 +1,83 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Coming Soon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hold off</title>
   <link rel="stylesheet" href="css.css" />
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to top right, #ffdce0, #e0f7ff);
-      text-align: center;
-      padding: 2em;
-    }
-    .container {
-      max-width: 600px;
-      margin: auto;
-    }
-    #flower {
-      font-size: 4em;
-      margin: 20px;
-      transition: transform 0.3s;
-      display: inline-block;
-      animation: bounce 2s infinite;
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    .player-container {
-      margin-top: 30px;
-      background: rgba(255, 255, 255, 0.6);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      border-radius: 20px;
-      padding: 20px;
-      backdrop-filter: blur(10px);
-    }
-    .disk {
-      width: 100px;
-      height: 100px;
-      background: radial-gradient(circle, #444 30%, #222);
-      border-radius: 50%;
-      margin: auto;
-      animation: rotate 0s linear infinite;
-    }
-    .disk.playing {
-      animation: rotate 3s linear infinite;
-    }
-    @keyframes rotate {
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-    #playlist {
-      list-style: none;
-      padding: 0;
-      margin-top: 1em;
-      max-height: 200px;
-      overflow-y: auto;
-    }
-    #playlist li {
-      padding: 5px;
-      cursor: pointer;
-      border-bottom: 1px solid #ccc;
-    }
-    #playlist li:hover {
-      background: #eee;
-    }
-    .controls {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 10px;
-    }
-    .progress-container {
-      width: 100%;
-      margin-top: 10px;
-    }
-    .progress-bar {
-      width: 100%;
-      height: 5px;
-      background: #ccc;
-      border-radius: 5px;
-      overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: #007bff;
-      transition: width 0.2s;
-    }
-    .volume-slider {
-      width: 100px;
-    }
-  </style>
 </head>
 <body>
   <div class="container">
-    <h2>असुविधा के लिए खेद है</h2>
-    <h3>Sorry for the inconvenience</h3>
-    <p>I will be back soon</p>
-    <p id="timer"></p>
-    <div id="flower">🌸</div>
-    <p><em>Till I come back...</em></p>
+    <h1>असुविधा के लिए खेद है</h1>
+    <h2>Sorry for the inconvenience</h2>
+    <h3>I will be back soon</h3>
 
-    <div class="player-container">
-      <div class="disk" id="disk"></div>
-      <div class="controls">
-        <button onclick="prevSong()">⏮️</button>
-        <button onclick="togglePlay()">▶️</button>
-        <button onclick="nextSong()">⏭️</button>
-      </div>
-      <div class="progress-container">
-        <div class="progress-bar">
-          <div class="progress-fill" id="progress"></div>
-        </div>
-      </div>
-      <input type="range" id="volume" class="volume-slider" min="0" max="1" step="0.01">
-      <ul id="playlist"></ul>
+    <div id="timer">
+      Time left: <span id="countdown"></span>
     </div>
 
-    <audio id="audio" controls style="display:none;"></audio>
+    <div id="flower">🌸</div>
+
+    <div class="player-container">
+      <img id="album-art" class="album-art" src="https://via.placeholder.com/100x100.png?text=🎵" alt="Album Art" />
+      <div id="song-title">No song loaded</div>
+      <div class="controls">
+        <button id="play-pause">Play</button>
+      </div>
+      <div id="progress">
+        <div id="progress-bar"></div>
+      </div>
+      <div class="volume">
+        <label for="volume">Volume</label>
+        <input id="volume" type="range" min="0" max="1" step="0.01" value="0.5" />
+      </div>
+      <audio id="audio-player"></audio>
+    </div>
   </div>
+
+  <div class="contact-box">
+    <label for="contact-msg">Like to contact me:</label>
+    <input type="text" id="contact-msg" placeholder="Enter your message" />
+    <button id="send-btn">Send</button>
+  </div>
+
   <script src="js.js"></script>
+  <script>
+    // Countdown timer code
+    const countdownEl = document.getElementById('countdown');
+    const targetDate = new Date('March 22, 2027 00:00:00').getTime();
+
+    function updateTimer() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        countdownEl.innerText = "Time's up!";
+        clearInterval(timerInterval);
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / 1000 / 60) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+
+      countdownEl.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    const timerInterval = setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // Contact send button logic
+    document.getElementById('send-btn').addEventListener('click', () => {
+      const msg = document.getElementById('contact-msg').value.trim();
+      if (!msg) {
+        alert('Please enter a message before sending.');
+        return;
+      }
+      const mailtoLink = `mailto:tejaspatel0804@gmail.com?subject=Contact from Website&body=${encodeURIComponent(msg)}`;
+      window.location.href = mailtoLink;
+    });
+  </script>
 </body>
 </html>
