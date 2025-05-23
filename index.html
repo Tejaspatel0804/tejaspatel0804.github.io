@@ -3,81 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hold off</title>
+  <title>Hold Off Coming Soon</title>
   <link rel="stylesheet" href="css.css" />
 </head>
 <body>
   <div class="container">
     <h1>असुविधा के लिए खेद है</h1>
     <h2>Sorry for the inconvenience</h2>
-    <h3>I will be back soon</h3>
-
-    <div id="timer">
-      Time left: <span id="countdown"></span>
-    </div>
+    <p>I will be back soon</p>
+    <p><strong>Time left:</strong> <span id="countdown"></span></p>
 
     <div id="flower">🌸</div>
 
     <div class="player-container">
-      <img id="album-art" class="album-art" src="https://via.placeholder.com/100x100.png?text=🎵" alt="Album Art" />
-      <div id="song-title">No song loaded</div>
+      <div class="album-art"></div>
+      <p id="song-title">Till I come back -</p>
+      <audio id="audio-player"></audio>
+
       <div class="controls">
-        <button id="play-pause">Play</button>
+        <button id="prev" title="Previous">&#9664;</button>
+        <button id="play-pause" title="Play/Pause">&#9658;</button>
+        <button id="next" title="Next">&#9654;</button>
       </div>
+
       <div id="progress">
         <div id="progress-bar"></div>
       </div>
+
       <div class="volume">
         <label for="volume">Volume</label>
-        <input id="volume" type="range" min="0" max="1" step="0.01" value="0.5" />
+        <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5" />
       </div>
-      <audio id="audio-player"></audio>
     </div>
   </div>
 
   <div class="contact-box">
-    <label for="contact-msg">Like to contact me:</label>
-    <input type="text" id="contact-msg" placeholder="Enter your message" />
+    <label for="contact-text">Like to contact me:</label>
+    <input type="text" id="contact-text" placeholder="Type your message..." />
     <button id="send-btn">Send</button>
   </div>
 
   <script src="js.js"></script>
-  <script>
-    // Countdown timer code
-    const countdownEl = document.getElementById('countdown');
-    const targetDate = new Date('March 22, 2027 00:00:00').getTime();
-
-    function updateTimer() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      if (distance < 0) {
-        countdownEl.innerText = "Time's up!";
-        clearInterval(timerInterval);
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((distance / 1000 / 60) % 60);
-      const seconds = Math.floor((distance / 1000) % 60);
-
-      countdownEl.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
-
-    const timerInterval = setInterval(updateTimer, 1000);
-    updateTimer();
-
-    // Contact send button logic
-    document.getElementById('send-btn').addEventListener('click', () => {
-      const msg = document.getElementById('contact-msg').value.trim();
-      if (!msg) {
-        alert('Please enter a message before sending.');
-        return;
-      }
-      const mailtoLink = `mailto:tejaspatel0804@gmail.com?subject=Contact from Website&body=${encodeURIComponent(msg)}`;
-      window.location.href = mailtoLink;
-    });
-  </script>
 </body>
 </html>
