@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Flower to Smiley</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coming Soon</title>
   <link rel="stylesheet" href="css.css" />
 </head>
 <body>
-  <audio id="bg-music" autoplay loop>
-    <source src="music/blue_instrumental.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-
   <div class="container">
-    <h1>
-      असुविधा के लिए खेद है<br>
-      <span>Sorry for the inconvenience</span><br>
-      I will be back soon
-    </h1>
+    <h1>असुविधा के लिए खेद है</h1>
+    <h2>Sorry for the inconvenience</h2>
+    <p> I will be back soon</p>
     <div id="countdown"></div>
-    <canvas id="canvas" width="400" height="400"></canvas>
+
+    <div id="flower">🌺</div>
+
+    <div class="player-container">
+      <div class="disk" id="disk"></div>
+      <audio id="audioPlayer" controls autoplay></audio>
+      <ul id="playlist"></ul>
+    </div>
   </div>
 
   <script src="js.js"></script>
