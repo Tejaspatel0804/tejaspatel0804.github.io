@@ -29,8 +29,8 @@ const playlistEl = document.getElementById("playlist");
 
 // Simulating folder songs (GitHub Pages can't read folders directly)
 const songs = [
-  "songs/song1.mp3",
-  "songs/song2.mp3"
+   "songs/blue (instrumental).mp3",
+  "songs/blue (instrumental).mp3"
 ];
 
 songs.forEach((src, i) => {
