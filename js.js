@@ -1,54 +1,59 @@
-// Countdown Timer
-const countdown = document.getElementById("countdown");
-const endDate = new Date("2027-03-22T00:00:00").getTime();
+document.addEventListener("DOMContentLoaded", function () {
+  const audio = document.getElementById("audio-player");
+  const playPauseBtn = document.getElementById("play-pause");
+  const songTitle = document.getElementById("song-title");
+  const flower = document.getElementById("flower");
+  const volumeSlider = document.getElementById("volume");
+  const progressBar = document.getElementById("progress-bar");
 
-setInterval(() => {
-  const now = new Date().getTime();
-  const distance = endDate - now;
+  let currentSongIndex = 0;
+  let songs = [];
 
-  if (distance < 0) {
-    countdown.innerHTML = "I'm back!";
-    return;
+  // Manually list songs here, since GitHub Pages can't dynamically list files
+  songs = [
+    "songs/blue (instrumental).mp3",
+    "songs/blue (instrumental).mp3"
+    // Add your songs here
+  ];
+
+  function loadSong(index) {
+    audio.src = songs[index];
+    const fileName = songs[index].split("/").pop();
+    songTitle.textContent = fileName;
+    // You can update albumArt src if you want to load album covers dynamically
   }
 
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor(
-    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-  );
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  function playSong() {
+    audio.play();
+    playPauseBtn.textContent = "Pause";
+    flower.textContent = "😊";
+  }
 
-  countdown.innerHTML = `Time left: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-}, 1000);
+  function pauseSong() {
+    audio.pause();
+    playPauseBtn.textContent = "Play";
+    flower.textContent = "🌸";
+  }
 
-// Music Player & Flower swap
-const audioPlayer = document.getElementById("audioPlayer");
-const disk = document.getElementById("disk");
-const flower = document.getElementById("flower");
-const playlistEl = document.getElementById("playlist");
+  playPauseBtn.addEventListener("click", () => {
+    if (audio.paused) playSong();
+    else pauseSong();
+  });
 
-// Simulating folder songs (GitHub Pages can't read folders directly)
-const songs = [
-   "songs/blue (instrumental).mp3",
-  "songs/blue (instrumental).mp3"
-];
+  audio.addEventListener("ended", () => {
+    currentSongIndex = (currentSongIndex + 1) % songs.length;
+    loadSong(currentSongIndex);
+    playSong();
+  });
 
-songs.forEach((src, i) => {
-  const li = document.createElement("li");
-  li.textContent = src.split("/").pop();
-  li.onclick = () => {
-    audioPlayer.src = src;
-    audioPlayer.play();
-  };
-  playlistEl.appendChild(li);
+  audio.addEventListener("timeupdate", () => {
+    const progressPercent = (audio.currentTime / audio.duration) * 100;
+    progressBar.style.width = `${progressPercent}%`;
+  });
+
+  volumeSlider.addEventListener("input", () => {
+    audio.volume = volumeSlider.value;
+  });
+
+  loadSong(currentSongIndex);
 });
-
-audioPlayer.onplay = () => {
-  flower.textContent = "😊";
-  disk.classList.add("playing");
-};
-
-audioPlayer.onpause = () => {
-  flower.textContent = "🌼";
-  disk.classList.remove("playing");
-};
