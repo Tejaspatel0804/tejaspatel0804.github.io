@@ -7,14 +7,21 @@
   <link rel="stylesheet" href="css.css" />
 </head>
 <body>
+  <audio id="bg-music" autoplay loop>
+    <source src="music/blue_instrumental.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
   <div class="container">
     <h1>
       असुविधा के लिए खेद है<br>
       <span>Sorry for the inconvenience</span><br>
-      We will be back soon
+      I will be back soon
     </h1>
+    <div id="countdown"></div>
     <canvas id="canvas" width="400" height="400"></canvas>
   </div>
+
   <script src="js.js"></script>
 </body>
 </html>
