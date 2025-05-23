@@ -38,9 +38,11 @@ body {
 .album-art {
   width: 100px;
   height: 100px;
-  border-radius: 10px;
-  margin-bottom: 10px;
+  border-radius: 50%;
+  background: #ccc url('songs/download.jpg') center/cover;
+  margin: 0 auto 15px;
 }
+
 
 .controls button {
   background: #ff6b81;
