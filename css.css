@@ -1,71 +1,76 @@
 body {
-  margin: 0;
-  font-family: sans-serif;
   background: #fff0f5;
-  text-align: center;
-  padding: 40px 20px;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  margin: 0;
 }
 
 .container {
-  max-width: 600px;
-  margin: auto;
+  text-align: center;
 }
 
 h1 {
-  font-size: 2em;
-  color: #d6336c;
-  margin-bottom: 30px;
-  line-height: 1.5;
+  color: #d32f2f;
+  font-size: 28px;
+  line-height: 1.6;
 }
 
 h1 span {
-  font-size: 0.8em;
-  color: #555;
+  color: #444;
+  font-size: 18px;
 }
 
 #countdown {
-  font-size: 1.5em;
+  font-size: 24px;
+  margin-top: 20px;
   color: #444;
-  margin-bottom: 40px;
 }
 
 .flower {
   position: relative;
-  width: 100px;
-  height: 100px;
-  margin: auto;
-  animation: bloom 3s ease-in-out infinite;
+  width: 120px;
+  height: 120px;
+  margin: 40px auto;
+  animation: bloom 4s ease-in-out infinite;
+}
+
+.core {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: gold;
+  border-radius: 50%;
+  top: 45px;
+  left: 45px;
+  z-index: 2;
 }
 
 .petal {
+  position: absolute;
   width: 60px;
   height: 60px;
-  background: #ff4d6d;
-  position: absolute;
+  background: #e91e63;
   border-radius: 50% 50% 0 0;
+  opacity: 0.9;
   transform-origin: bottom center;
 }
 
-.petal1 { transform: rotate(0deg) translateY(-30px); }
-.petal2 { transform: rotate(90deg) translateY(-30px); }
-.petal3 { transform: rotate(180deg) translateY(-30px); }
-.petal4 { transform: rotate(270deg) translateY(-30px); }
-
-.center {
-  width: 30px;
-  height: 30px;
-  background: #ffb3c1;
-  border-radius: 50%;
-  position: absolute;
-  top: 35px;
-  left: 35px;
-}
+.p1 { transform: rotate(0deg) translateY(-40px); }
+.p2 { transform: rotate(60deg) translateY(-40px); }
+.p3 { transform: rotate(120deg) translateY(-40px); }
+.p4 { transform: rotate(180deg) translateY(-40px); }
+.p5 { transform: rotate(240deg) translateY(-40px); }
+.p6 { transform: rotate(300deg) translateY(-40px); }
 
 @keyframes bloom {
   0%, 100% {
-    transform: scale(1);
+    transform: scale(0.9) rotate(0deg);
   }
   50% {
-    transform: scale(1.3) rotate(10deg);
+    transform: scale(1.1) rotate(10deg);
   }
 }
