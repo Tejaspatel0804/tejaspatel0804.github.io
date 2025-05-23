@@ -1,21 +1,22 @@
 function updateCountdown() {
-  const now = new Date();
-  const endDate = new Date("March 22, 2027 00:00:00");
-  const diff = endDate - now;
+  const endDate = new Date("March 22, 2027 00:00:00").getTime();
+  const now = new Date().getTime();
+  const timeLeft = endDate - now;
 
-  if (diff <= 0) {
-    document.getElementById("countdown").innerText = "We are back!";
+  if (timeLeft <= 0) {
+    document.getElementById("countdown").innerHTML = "We're back!";
     return;
   }
 
-  const seconds = Math.floor(diff / 1000) % 60;
-  const minutes = Math.floor(diff / (1000 * 60)) % 60;
-  const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
+  const seconds = Math.floor((timeLeft / 1000) % 60);
 
-  document.getElementById("countdown").innerText =
-    `${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds left`;
+  document.getElementById("countdown").innerHTML =
+    `${days}d ${hours}h ${minutes}m ${seconds}s left`;
+
+  requestAnimationFrame(updateCountdown);
 }
 
-setInterval(updateCountdown, 1000);
 updateCountdown();
