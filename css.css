@@ -1,29 +1,37 @@
 body {
-  margin: 0;
-  background: #fff8dc;
-  font-family: 'Segoe UI', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  text-align: center;
+  flex-direction: column;
+  background: #fefae0;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: center;
 }
 
 h1 {
-  font-size: 1.5em;
-  color: #444;
-  margin-bottom: 20px;
+  font-size: 1.8em;
+  color: #333;
+  margin-top: 20px;
   line-height: 1.5;
 }
 
+h1 span {
+  font-size: 1em;
+  color: #666;
+}
+
+#countdown {
+  font-size: 1.5em;
+  margin: 15px 0;
+  color: #444;
+}
+
 canvas {
-  border: 2px solid #555;
   background: #fff;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  margin-top: 10px;
+  /* removed border */
 }
