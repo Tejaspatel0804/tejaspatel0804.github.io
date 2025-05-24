@@ -90,7 +90,7 @@ body {
 
 /* Contact box style */
 .contact-box {
-  position: fixed;
+  position: static;
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
